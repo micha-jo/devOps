@@ -1,0 +1,16 @@
+version: '3'
+services:
+  front:
+    container_name: frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend
+      args:
+        - ENV=${ENV}
+      target: ${ENV}
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
+    volumes:
+      - ./frontend:/app/frontend
+    env_file: ./.env.dev
+
